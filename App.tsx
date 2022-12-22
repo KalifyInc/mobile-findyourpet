@@ -1,20 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import useCachedResources from './hooks/useCachedResources';
-import useColorScheme from './hooks/useColorScheme';
-import Navigation from './navigation';
+import useCachedResources from './src/hooks/useCachedResources';
+import { useColorScheme } from 'react-native';
+import Routes from './src/routes/routes';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
-
+  
   if (!isLoadingComplete) {
-    return null;
+    return console.log('....')
+    // <LoadingPage navigation='Home' route={undefined} />
   } else {
     return (
       <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
+        <Routes colorScheme={colorScheme} />
         <StatusBar />
       </SafeAreaProvider>
     );
