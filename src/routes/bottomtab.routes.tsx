@@ -1,9 +1,10 @@
-import { FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
-import { Pressable } from 'react-native';
+import { View, Image } from 'react-native';
 
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+
 import useColorScheme from '../hooks/useColorScheme';
 
 import HomeScreen from '../view/screens/Home';
@@ -13,10 +14,6 @@ import InformationScreen from '../view/screens/Information';
 import { RootTabParamList, RootTabScreenProps } from '../../types';
 
 
-/**
- * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
- * https://reactnavigation.org/docs/bottom-tab-navigator
- */
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 export default function BottomTabNavigator() {
@@ -26,28 +23,27 @@ export default function BottomTabNavigator() {
     <BottomTab.Navigator
       initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarShowLabel: false,
+        headerTitle: 'FindYourPet',
+        headerTitleAlign: 'center',
+        headerTitleStyle: {
+          fontSize: 24,
+        },
+        tabBarActiveTintColor: '#30AD80',
       }}>
       <BottomTab.Screen
         name="Home"
         component={HomeScreen}
         options={({ navigation }: RootTabScreenProps<'Home'>) => ({
           title: 'Home',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Register')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
+          tabBarIcon: ({ color }) => <View>
+            <Image source={require('../../assets/images/pet_icon.png')} 
+            resizeMode="contain"
+            style={{ 
+            width: 27,
+            height: 27,
+              tintColor: color
+            }}></Image></View>
         })}
       />
       <BottomTab.Screen
@@ -55,35 +51,26 @@ export default function BottomTabNavigator() {
         component={RegisterScreen}
         options={{
           title: 'Register',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <AntDesign name="addfile" size={24} color={color} />,
         }}
       />
       <BottomTab.Screen
         name="Map"
         component={MapsScreen}
         options={{
-          title: 'Map',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Maps',
+          tabBarIcon: ({ color }) => <Ionicons name="md-location-sharp" size={26} color={color} />,
         }}
+        
       />
       <BottomTab.Screen
         name="Information"
         component={InformationScreen}
         options={{
           title: 'Information',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <Ionicons name="information-circle-outline" size={32} color={color} />,
         }}
       />
     </BottomTab.Navigator>
   );
-}
-
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 }

@@ -10,7 +10,7 @@ export default function InformationScreen ({ navigation }: RootTabScreenProps<'I
     <Container>
       <Title>FindYourPet</Title>
       <TextVersion>Versão 1.0.0</TextVersion>
-      {/* <Image source={require('../../../assets/images/pet_icon_green.png')}></Image> */}
+      {/* <Image source={require('../../assets/images/pet_icon_green.png')}></Image> */}
       <Text>2022 - {currentYear} Kalify Inc.</Text>
     </Container>
   )

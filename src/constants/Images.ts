@@ -1,5 +1,0 @@
-export const PET_ICON_GREEN_IMAGE = require('../../assets/images/pet_icon_green.png')
-export const PET_ICON_WHITE_IMAGE = require('../../assets/images/pet_icon.png')
-export const REGISTER_ICON = require('../../assets/images/register_icon.png')
-export const MAPS_ICON = require('../../assets/images/maps_icon.png')
-export const INFORMATION_ICON = require('../../assets/images/information_icon.png')
