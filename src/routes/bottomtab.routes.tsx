@@ -2,10 +2,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 import { View, Image } from 'react-native';
 
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+import useColorScheme from '../hooks/useColorScheme';
+
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-
-import useColorScheme from '../hooks/useColorScheme';
 
 import HomeScreen from '../view/screens/Home';
 import RegisterScreen from '../view/screens/Register';
@@ -29,7 +30,7 @@ export default function BottomTabNavigator() {
         headerTitleStyle: {
           fontSize: 24,
         },
-        tabBarActiveTintColor: '#30AD80',
+        tabBarActiveTintColor: Colors[colorScheme].tint,
       }}>
       <BottomTab.Screen
         name="Home"
@@ -68,6 +69,7 @@ export default function BottomTabNavigator() {
         component={InformationScreen}
         options={{
           title: 'Information',
+          headerShown: false,
           tabBarIcon: ({ color }) => <Ionicons name="information-circle-outline" size={32} color={color} />,
         }}
       />
