@@ -11,7 +11,6 @@ export default function App() {
   
   if (!isLoadingComplete) {
     return console.log('....')
-    // <LoadingPage navigation='Home' route={undefined} />
   } else {
     return (
       <SafeAreaProvider>
