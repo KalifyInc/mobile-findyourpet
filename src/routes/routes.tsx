@@ -1,6 +1,9 @@
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import * as React from 'react';
 import { ColorSchemeName } from 'react-native';
+
+import DarkTheme from '../utils/themes/DarkTheme';
+import DefaultTheme from '../utils/themes/DefaultTheme';
 
 import LinkingConfiguration from './LinkingConfiguration';
 import StackNavigator from './stack.routes';
