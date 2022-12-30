@@ -1,9 +1,10 @@
 import { Theme } from "@react-navigation/native";
+import { primaryColor } from "../Colors";
 
 const DefaultTheme: Theme = {
   dark: false,
   colors: {
-    primary: '#30AD80',
+    primary: primaryColor,
     background: 'rgb(242, 242, 242)',
     card: 'rgb(255, 255, 255)',
     text: 'rgb(28, 28, 30)',
