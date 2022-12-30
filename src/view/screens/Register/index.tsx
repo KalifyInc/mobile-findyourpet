@@ -1,6 +1,16 @@
-import { KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
+import * as React from 'react';
 
-import { styles } from './styles';
+import { 
+  KeyboardAvoidingView, 
+  ScrollView, 
+  TextInput, 
+  TouchableOpacity, 
+  Image 
+} from 'react-native';
+
+import RNPickerSelect from "react-native-picker-select";
+
+import { pickerSelectStyles, styles } from './styles';
 import { Text, View } from '../../components/Themed';
 
 import userSignInViewModel from '../../../viewModel/userRegisterViewModel';
@@ -19,67 +29,83 @@ export default function RegisterScreen() {
     setDescription,
     telephoneNumber,
     setTelephoneNumber,
-    handleSignIn
+    handleSignIn,
+    cleanRegister
   } = userSignInViewModel();
 
   return (
-      <KeyboardAvoidingView>
-        <View style={styles.containerTitle}>
-          <Text style={styles.title}>CADASTRAR PETS</Text>
-        </View>      
+      <ScrollView>
+        <KeyboardAvoidingView>
+          <View style={styles.containerTitle}>
+            <Text style={styles.title}>CADASTRAR PETS</Text>
+          </View>      
 
-        <View style={styles.container}>
-          <Text style={styles.text}>FOTO DO ANIMAL</Text>
-          <TextInput 
-            value={petPhoto}
-            onChangeText={text=> setPetPhoto(text)}
-            style={styles.textInput}
-          ></TextInput>
+          <View style={styles.container}>
+            <Text style={styles.text}>FOTO DO ANIMAL</Text>
+            <TouchableOpacity onPress={() => console.log('teste')}>
+              <TextInput 
+              value={petPhoto} 
+              style={styles.textInputPhoto}
+              onChangeText={image => setPetPhoto(image)}>
+                <Image source={require('../../../../assets/images/camera.png')}/>
+              </TextInput>            
+            </TouchableOpacity>
 
-          <Text style={styles.text}>NOME DO ANIMAL</Text>
-          <TextInput 
-            value={name}
-            onChangeText={text=> setName(text)}
-            maxLength={10}
-            style={styles.textInput}
-          ></TextInput>
-
-          <Text style={styles.text}>QUAL É A SITUAÇÃO?</Text>
-          <TextInput 
-            value={condition}
-            onChangeText={text=> setCondition(text)}
-            style={styles.textInput}
-          ></TextInput>
-          
-          <Text style={styles.text}>BAIRRO/CIDADE DO ANIMAL</Text>
-          <TextInput 
-            value={localization}
-            onChangeText={text=> setLocalization(text)}
-            style={styles.textInput}
-            ></TextInput>
-
-          <Text style={styles.text}>DESCRIÇÃO</Text> 
+            <Text style={styles.text}>NOME DO ANIMAL</Text>
             <TextInput 
-            value={description}
-            onChangeText={text=> setDescription(text)}
-            maxLength={40}
-            multiline={true}
-            style={styles.textInput}
+            placeholder='amora'
+              value={name}
+              onChangeText={text=> setName(text)}
+              maxLength={10}
+              style={styles.textInput}
             ></TextInput>
-          
-          <Text style={styles.text}>NÚMERO DE TELEFONE</Text>
+
+            <Text style={styles.text}>QUAL É A SITUAÇÃO?</Text>
+              <RNPickerSelect
+                placeholder={{ label: 'Selecione uma opção', value: null }}
+                onValueChange={(condition) => setCondition(condition)}
+                items={[
+                  { label: "Perdido", value: "Perdido" },
+                  { label: "Encontrado", value: "Encontrado" },
+                  { label: "Adoção", value: "Adoção" },
+                ]}
+                  style={pickerSelectStyles}
+              />
+            
+            <Text style={styles.text}>BAIRRO/CIDADE DO ANIMAL</Text>
             <TextInput 
-            value={telephoneNumber}
-            onChangeText={text=> setTelephoneNumber(text)}
-            style={styles.textInput}
-            ></TextInput>
-        </View>
-        <View style={styles.containerTitle}>
-          <TouchableOpacity onPress={handleSignIn}>
-            <Text>ENVIAR</Text>
-          </TouchableOpacity>
-        </View>
-      </KeyboardAvoidingView>
+              value={localization}
+              onChangeText={text=> setLocalization(text)}
+              style={styles.textInput}
+              ></TextInput>
+
+            <Text style={styles.text}>DESCRIÇÃO</Text> 
+              <TextInput 
+              value={description}
+              onChangeText={text=> setDescription(text)}
+              maxLength={40}
+              multiline={true}
+              style={[styles.textInput, styles.descricaoInput]}
+              ></TextInput>
+            
+            <Text style={styles.text}>NÚMERO DE TELEFONE</Text>
+              <TextInput 
+              value={telephoneNumber}
+              onChangeText={text=> setTelephoneNumber(text)}
+              style={styles.textInput}
+              ></TextInput>
+          </View>
+          <View style={styles.containerButton}>
+            <TouchableOpacity style={[styles.button, styles.clearButton]} onPress={cleanRegister}>
+              <Text>LIMPAR</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={[styles.button, styles.sendButton]} onPress={handleSignIn}>
+              <Text>ENVIAR</Text>
+            </TouchableOpacity>
+          </View>
+        </KeyboardAvoidingView>
+      </ScrollView>
+      
   )
 }
-
