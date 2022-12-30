@@ -14,4 +14,5 @@ export interface UserLoginModel {
   telephoneNumber: string;
   setTelephoneNumber: React.Dispatch<React.SetStateAction<string>>;
   handleSignIn: () => any;
+  cleanRegisterSignIn: () => any;
 }

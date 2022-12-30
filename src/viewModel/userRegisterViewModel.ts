@@ -9,6 +9,11 @@ export function userSignInViewModel() {
   const [description, setDescription] = useState<string>('');
   const [telephoneNumber, setTelephoneNumber] = useState<string>('');
 
+
+  const cleanRegister = () => {
+
+  }
+  
   const handleSignIn = async () => {
       // await auth()
       // .createUserWithEmailAndPassword(email, password)
@@ -45,6 +50,7 @@ export function userSignInViewModel() {
     telephoneNumber,
     setTelephoneNumber,
     handleSignIn,
+    cleanRegister,
   };
 }
 
