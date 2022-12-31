@@ -5,7 +5,8 @@ import {
   ScrollView, 
   TextInput, 
   TouchableOpacity, 
-  Image 
+  Image, 
+  Button
 } from 'react-native';
 
 import RNPickerSelect from "react-native-picker-select";
@@ -42,13 +43,8 @@ export default function RegisterScreen() {
 
           <View style={styles.container}>
             <Text style={styles.text}>FOTO DO ANIMAL</Text>
-            <TouchableOpacity onPress={() => console.log('teste')}>
-              <TextInput 
-              value={petPhoto} 
-              style={styles.textInputPhoto}
-              onChangeText={image => setPetPhoto(image)}>
+            <TouchableOpacity onPress={image => setPetPhoto(image)} style={styles.textInputPhoto}>
                 <Image source={require('../../../../assets/images/camera.png')}/>
-              </TextInput>            
             </TouchableOpacity>
 
             <Text style={styles.text}>NOME DO ANIMAL</Text>

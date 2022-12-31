@@ -26,7 +26,12 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   textInputPhoto: {
-    marginTop: 10,
+    margin: 15,
+    marginLeft: 100,
+    marginRight: 100,
+    padding: 10,
+    alignContent: 'center',
+    justifyContent: 'center',
     backgroundColor: '#D9D9D9',
     borderRadius: 10,
   },
